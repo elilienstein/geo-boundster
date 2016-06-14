@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  Bounder
+//  GeoBoundster
 //
 //  Created by Eric Lilienstein on 6/13/16.
 //  Copyright © 2016 Eric Lilienstein. All rights reserved.
@@ -8,13 +8,9 @@
 
 #import "ViewController.h"
 #import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <AddressBookUI/AddressBookUI.h>
+//#import <CoreLocation/CoreLocation.h>
 
-#define STREET_MAX_SPAN .2
-#define CITY_MAX_SPAN 10
-#define STATE_MAX_SPAN 50
-#define COUNTRY_MAX_SPAN 100
+
 
 NSString * const kDefaultLatitude = @"savedUserLatitude";
 NSString * const kDefaultLongitude = @"savedUserLongitude";
@@ -28,8 +24,8 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
-@property (strong, nonatomic) NSArray *bounds;
-@property (strong, nonatomic) NSString *addressString;
+
+@property (strong, nonatomic) NSString *coordinates;
 @property (nonatomic) MKCoordinateRegion myRegion;
 
 @end
@@ -41,9 +37,8 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
-    self.navigationItem.rightBarButtonItem = anotherButton;
-    
+
+   
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 
@@ -81,7 +76,6 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
                              initWithTarget:self
                              action:@selector(handleTaps:)];
 
-//    self.tapGestureRecognizer.numberOfTapsRequired = 1;
 
 [self.view addGestureRecognizer:self.tapGestureRecognizer];
 
@@ -99,26 +93,24 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     
     
     //To calculate the search bounds...
-    //First we need to calculate the corners of the map so we get the points
+    //1. Find the corners of the map
     
     //
     CGPoint nePoint = CGPointMake(self.mapView.bounds.origin.x + self.mapView.bounds.size.width, self.mapView.bounds.origin.y);
     CGPoint swPoint = CGPointMake((self.mapView.bounds.origin.x), (self.mapView.bounds.origin.y + self.mapView.bounds.size.height));
     
-    //Then transform those points into lat,lng values
-    CLLocationCoordinate2D neCoord;
-    neCoord = [self.mapView convertPoint:nePoint toCoordinateFromView:self.mapView];
+    //2.Transform corner points into lat,lng values
+    CLLocationCoordinate2D neCoord = [self.mapView convertPoint:nePoint toCoordinateFromView:self.mapView];
     
-    CLLocationCoordinate2D swCoord;
-    swCoord = [self.mapView convertPoint:swPoint toCoordinateFromView:self.mapView];
+    CLLocationCoordinate2D swCoord = [self.mapView convertPoint:swPoint toCoordinateFromView:self.mapView];
     
-    //calculate the span's latitude and longitude deltas
+    //3. calculate latitude and longitude deltas
     
     latDelta = tapPoint.latitude - swCoord.latitude;
     longDelta = tapPoint.longitude - swCoord.longitude;
     MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
     
-    //Add the calculated data to a region object
+    //4. Add the calculated data to a region object
     MKCoordinateRegion region =  {{tapPoint.latitude, tapPoint.longitude}, mySpan};
     
     neCoord.latitude  = tapPoint.latitude  + (region.span.latitudeDelta  / 2.0);
@@ -132,69 +124,37 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     NSString *swLong = [NSString stringWithFormat:@"%.2f", swCoord.longitude];
     
     
-    _bounds = @[neLong, swLat, swLong, neLat];
-    NSLog(@"%@",_bounds);
+    
+  
     
     [self setUserDefaultsWithLatitude:tapPoint.latitude longitude:tapPoint.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
     
-    
-    
-    CLLocation *location =   [[CLLocation alloc]initWithLatitude:tapPoint.latitude longitude:tapPoint.longitude];
-    
-    
-    CLGeocoder *myGeoCoder = [[CLGeocoder alloc]init];
-    
-    [myGeoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (placemarks.count > 0 && error == nil){
-            
-            CLPlacemark *firstPlacemark = placemarks[0];
-            
-            NSString *address = [self makeAddressStringWithPlacemark:firstPlacemark andSpan:mySpan];
-            
-            //            if (mySpan.latitudeDelta < STREET_MAX_SPAN) {
-            //                address = [addressDictionary objectForKey: (NSString *) kABPersonAddressStreetKey];
-            //            }
-            //
-            //            else if (mySpan.latitudeDelta > STREET_MAX_SPAN && mySpan.latitudeDelta < CITY_MAX_SPAN)  {
-            //                address = [addressDictionary objectForKey: (NSString *) kABPersonAddressCityKey];
-            //            }
-            //            else if (mySpan.latitudeDelta > CITY_MAX_SPAN && mySpan.latitudeDelta < STATE_MAX_SPAN) {
-            //                address = [addressDictionary objectForKey: (NSString *) kABPersonAddressStateKey];
-            //            }
-            //            else {
-            //                address = [addressDictionary objectForKey: (NSString *) kABPersonAddressCountryKey];
-            //            }
-            
-           
-        }
-        
-        
-    }];
-    
-    
-    
-    
-    NSString *neCoordinate =[neLong stringByAppendingString:@", " ];
+    NSString *neCoordinate =[neLong stringByAppendingString:@",  " ];
     NSString *firstPointCoordinate =[neCoordinate stringByAppendingString:swLat];
 
-    NSString *formatedFirstPoint =[firstPointCoordinate stringByAppendingString:@", " ];
+    NSString *formatedFirstPoint =[firstPointCoordinate stringByAppendingString:@",  " ];
     
-    NSString *swCoordinate =[swLong stringByAppendingString:@", "];
+    NSString *swCoordinate =[swLong stringByAppendingString:@",  "];
     NSString *secondPointCoordinate = [swCoordinate stringByAppendingString:neLat];
-    NSString *allCoordinates = [formatedFirstPoint stringByAppendingString:secondPointCoordinate];
+    self.coordinates = [formatedFirstPoint stringByAppendingString:secondPointCoordinate];
     
-   // NSString *fullString = [allCoordinates stringByAppendingString:_addressString];
-     self.navigationItem.title = allCoordinates;
+
+     self.navigationItem.title = self.coordinates;
+    [self showButton];
 }
 
+-(void)showButton {
+    if (self.coordinates != nil){
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export" style:UIBarButtonItemStylePlain target:self action:@selector(export)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    }
+}
 
- 
- -(void)send {
+ -(void)export {
  UIActivityViewController *activityViewController =
- [[UIActivityViewController alloc] initWithActivityItems:@[_bounds]
+ [[UIActivityViewController alloc] initWithActivityItems:@[self.coordinates]
  applicationActivities:nil];
  
-// activityViewController.excludedActivityTypes = @[UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact];
  if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
  // iOS8
  activityViewController.popoverPresentationController.sourceView =
@@ -218,32 +178,10 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
 }
 
 
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(NSString *)makeAddressStringWithPlacemark:(CLPlacemark *)placemark andSpan:(MKCoordinateSpan)theSpan {
-    NSString *address;
-    NSDictionary *addressDictionary = placemark.addressDictionary;
-    
-    if (theSpan.latitudeDelta < STREET_MAX_SPAN) {
-        address = [addressDictionary objectForKey: (NSString *) kABPersonAddressStreetKey];
-    }
-    else if (theSpan.latitudeDelta > STREET_MAX_SPAN && theSpan.latitudeDelta < CITY_MAX_SPAN)  {
-        address = [addressDictionary objectForKey: (NSString *) kABPersonAddressCityKey];
-    }
-    else if (theSpan.latitudeDelta > CITY_MAX_SPAN && theSpan.latitudeDelta < STATE_MAX_SPAN) {
-        address = [addressDictionary objectForKey: (NSString *) kABPersonAddressStateKey];
-    }
-    else {
-        address = [addressDictionary objectForKey: (NSString *) kABPersonAddressCountryKey];
-    }
-    
-    return address;
 }
 
 @end

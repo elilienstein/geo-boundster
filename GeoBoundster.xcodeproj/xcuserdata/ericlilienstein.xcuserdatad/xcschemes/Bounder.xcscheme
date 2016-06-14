@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "525380F51D0F706B000A26AA"
-               BuildableName = "Bounder.app"
-               BlueprintName = "Bounder"
-               ReferencedContainer = "container:Bounder.xcodeproj">
+               BuildableName = "GeoBoundster.app"
+               BlueprintName = "GeoBoundster"
+               ReferencedContainer = "container:GeoBoundster.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5253810E1D0F706C000A26AA"
-               BuildableName = "BounderTests.xctest"
-               BlueprintName = "BounderTests"
-               ReferencedContainer = "container:Bounder.xcodeproj">
+               BuildableName = "GeoBoundster.xctest"
+               BlueprintName = "GeoBoundsterTests"
+               ReferencedContainer = "container:GeoBoundster.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "525381191D0F706C000A26AA"
-               BuildableName = "BounderUITests.xctest"
-               BlueprintName = "BounderUITests"
-               ReferencedContainer = "container:Bounder.xcodeproj">
+               BuildableName = "GeoBoundster.xctest"
+               BlueprintName = "GeoBoundsterUITests"
+               ReferencedContainer = "container:GeoBoundster.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "525380F51D0F706B000A26AA"
-            BuildableName = "Bounder.app"
-            BlueprintName = "Bounder"
-            ReferencedContainer = "container:Bounder.xcodeproj">
+            BuildableName = "GeoBoundster.app"
+            BlueprintName = "GeoBoundster"
+            ReferencedContainer = "container:GeoBoundster.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "525380F51D0F706B000A26AA"
-            BuildableName = "Bounder.app"
-            BlueprintName = "Bounder"
-            ReferencedContainer = "container:Bounder.xcodeproj">
+            BuildableName = "GeoBoundster.app"
+            BlueprintName = "GeoBoundster"
+            ReferencedContainer = "container:GeoBoundster.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "525380F51D0F706B000A26AA"
-            BuildableName = "Bounder.app"
-            BlueprintName = "Bounder"
-            ReferencedContainer = "container:Bounder.xcodeproj">
+            BuildableName = "GeoBoundster.app"
+            BlueprintName = "GeoBoundster"
+            ReferencedContainer = "container:GeoBoundster.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

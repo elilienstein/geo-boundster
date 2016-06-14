@@ -13,8 +13,6 @@
 		525381041D0F706C000A26AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525381021D0F706C000A26AA /* Main.storyboard */; };
 		525381061D0F706C000A26AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525381051D0F706C000A26AA /* Assets.xcassets */; };
 		525381091D0F706C000A26AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525381071D0F706C000A26AA /* LaunchScreen.storyboard */; };
-		525381141D0F706C000A26AA /* BounderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 525381131D0F706C000A26AA /* BounderTests.m */; };
-		5253811F1D0F706C000A26AA /* BounderUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253811E1D0F706C000A26AA /* BounderUITests.m */; };
 		5253812D1D0F8A8C000A26AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5253812C1D0F8A8C000A26AA /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		525380F61D0F706B000A26AA /* Bounder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bounder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		525380F61D0F706B000A26AA /* GeoBoundster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoBoundster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525380FA1D0F706C000A26AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		525380FC1D0F706C000A26AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		525380FD1D0F706C000A26AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,12 +44,8 @@
 		525381051D0F706C000A26AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		525381081D0F706C000A26AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5253810A1D0F706C000A26AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5253810F1D0F706C000A26AA /* BounderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BounderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		525381131D0F706C000A26AA /* BounderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BounderTests.m; sourceTree = "<group>"; };
-		525381151D0F706C000A26AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5253811A1D0F706C000A26AA /* BounderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BounderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5253811E1D0F706C000A26AA /* BounderUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BounderUITests.m; sourceTree = "<group>"; };
-		525381201D0F706C000A26AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5253810F1D0F706C000A26AA /* GeoBoundster.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoBoundster.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5253811A1D0F706C000A26AA /* GeoBoundster.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoBoundster.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5253812C1D0F8A8C000A26AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -85,9 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				5253812C1D0F8A8C000A26AA /* MapKit.framework */,
-				525380F81D0F706C000A26AA /* Bounder */,
-				525381121D0F706C000A26AA /* BounderTests */,
-				5253811D1D0F706C000A26AA /* BounderUITests */,
+				525380F81D0F706C000A26AA /* GeoBoundster */,
 				525380F71D0F706B000A26AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,14 +87,14 @@
 		525380F71D0F706B000A26AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				525380F61D0F706B000A26AA /* Bounder.app */,
-				5253810F1D0F706C000A26AA /* BounderTests.xctest */,
-				5253811A1D0F706C000A26AA /* BounderUITests.xctest */,
+				525380F61D0F706B000A26AA /* GeoBoundster.app */,
+				5253810F1D0F706C000A26AA /* GeoBoundster.xctest */,
+				5253811A1D0F706C000A26AA /* GeoBoundster.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		525380F81D0F706C000A26AA /* Bounder */ = {
+		525380F81D0F706C000A26AA /* GeoBoundster */ = {
 			isa = PBXGroup;
 			children = (
 				525380FC1D0F706C000A26AA /* AppDelegate.h */,
@@ -115,6 +107,7 @@
 				5253810A1D0F706C000A26AA /* Info.plist */,
 				525380F91D0F706C000A26AA /* Supporting Files */,
 			);
+			name = GeoBoundster;
 			path = Bounder;
 			sourceTree = "<group>";
 		};
@@ -126,30 +119,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		525381121D0F706C000A26AA /* BounderTests */ = {
-			isa = PBXGroup;
-			children = (
-				525381131D0F706C000A26AA /* BounderTests.m */,
-				525381151D0F706C000A26AA /* Info.plist */,
-			);
-			path = BounderTests;
-			sourceTree = "<group>";
-		};
-		5253811D1D0F706C000A26AA /* BounderUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5253811E1D0F706C000A26AA /* BounderUITests.m */,
-				525381201D0F706C000A26AA /* Info.plist */,
-			);
-			path = BounderUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		525380F51D0F706B000A26AA /* Bounder */ = {
+		525380F51D0F706B000A26AA /* GeoBoundster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 525381231D0F706C000A26AA /* Build configuration list for PBXNativeTarget "Bounder" */;
+			buildConfigurationList = 525381231D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundster" */;
 			buildPhases = (
 				525380F21D0F706B000A26AA /* Sources */,
 				525380F31D0F706B000A26AA /* Frameworks */,
@@ -159,14 +134,14 @@
 			);
 			dependencies = (
 			);
-			name = Bounder;
+			name = GeoBoundster;
 			productName = Bounder;
-			productReference = 525380F61D0F706B000A26AA /* Bounder.app */;
+			productReference = 525380F61D0F706B000A26AA /* GeoBoundster.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5253810E1D0F706C000A26AA /* BounderTests */ = {
+		5253810E1D0F706C000A26AA /* GeoBoundsterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 525381261D0F706C000A26AA /* Build configuration list for PBXNativeTarget "BounderTests" */;
+			buildConfigurationList = 525381261D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundsterTests" */;
 			buildPhases = (
 				5253810B1D0F706C000A26AA /* Sources */,
 				5253810C1D0F706C000A26AA /* Frameworks */,
@@ -177,14 +152,14 @@
 			dependencies = (
 				525381111D0F706C000A26AA /* PBXTargetDependency */,
 			);
-			name = BounderTests;
+			name = GeoBoundsterTests;
 			productName = BounderTests;
-			productReference = 5253810F1D0F706C000A26AA /* BounderTests.xctest */;
+			productReference = 5253810F1D0F706C000A26AA /* GeoBoundster.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		525381191D0F706C000A26AA /* BounderUITests */ = {
+		525381191D0F706C000A26AA /* GeoBoundsterUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 525381291D0F706C000A26AA /* Build configuration list for PBXNativeTarget "BounderUITests" */;
+			buildConfigurationList = 525381291D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundsterUITests" */;
 			buildPhases = (
 				525381161D0F706C000A26AA /* Sources */,
 				525381171D0F706C000A26AA /* Frameworks */,
@@ -195,9 +170,9 @@
 			dependencies = (
 				5253811C1D0F706C000A26AA /* PBXTargetDependency */,
 			);
-			name = BounderUITests;
+			name = GeoBoundsterUITests;
 			productName = BounderUITests;
-			productReference = 5253811A1D0F706C000A26AA /* BounderUITests.xctest */;
+			productReference = 5253811A1D0F706C000A26AA /* GeoBoundster.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -228,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 525380F11D0F706B000A26AA /* Build configuration list for PBXProject "Bounder" */;
+			buildConfigurationList = 525380F11D0F706B000A26AA /* Build configuration list for PBXProject "GeoBoundster" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -241,9 +216,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				525380F51D0F706B000A26AA /* Bounder */,
-				5253810E1D0F706C000A26AA /* BounderTests */,
-				525381191D0F706C000A26AA /* BounderUITests */,
+				525380F51D0F706B000A26AA /* GeoBoundster */,
+				5253810E1D0F706C000A26AA /* GeoBoundsterTests */,
+				525381191D0F706C000A26AA /* GeoBoundsterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525381141D0F706C000A26AA /* BounderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5253811F1D0F706C000A26AA /* BounderUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,12 +280,12 @@
 /* Begin PBXTargetDependency section */
 		525381111D0F706C000A26AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 525380F51D0F706B000A26AA /* Bounder */;
+			target = 525380F51D0F706B000A26AA /* GeoBoundster */;
 			targetProxy = 525381101D0F706C000A26AA /* PBXContainerItemProxy */;
 		};
 		5253811C1D0F706C000A26AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 525380F51D0F706B000A26AA /* Bounder */;
+			target = 525380F51D0F706B000A26AA /* GeoBoundster */;
 			targetProxy = 5253811B1D0F706C000A26AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -430,7 +403,7 @@
 				INFOPLIST_FILE = Bounder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.Bounder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoBoundster;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -444,7 +417,7 @@
 				INFOPLIST_FILE = Bounder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.Bounder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoBoundster;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -456,8 +429,8 @@
 				INFOPLIST_FILE = BounderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.BounderTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bounder.app/Bounder";
+				PRODUCT_NAME = GeoBoundster;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoBoundster.app/GeoBoundster";
 			};
 			name = Debug;
 		};
@@ -468,8 +441,8 @@
 				INFOPLIST_FILE = BounderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.BounderTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bounder.app/Bounder";
+				PRODUCT_NAME = GeoBoundster;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoBoundster.app/GeoBoundster";
 			};
 			name = Release;
 		};
@@ -479,7 +452,7 @@
 				INFOPLIST_FILE = BounderUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.BounderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoBoundster;
 				TEST_TARGET_NAME = Bounder;
 			};
 			name = Debug;
@@ -490,7 +463,7 @@
 				INFOPLIST_FILE = BounderUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericlilienstein.BounderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoBoundster;
 				TEST_TARGET_NAME = Bounder;
 			};
 			name = Release;
@@ -498,7 +471,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		525380F11D0F706B000A26AA /* Build configuration list for PBXProject "Bounder" */ = {
+		525380F11D0F706B000A26AA /* Build configuration list for PBXProject "GeoBoundster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				525381211D0F706C000A26AA /* Debug */,
@@ -507,29 +480,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		525381231D0F706C000A26AA /* Build configuration list for PBXNativeTarget "Bounder" */ = {
+		525381231D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				525381241D0F706C000A26AA /* Debug */,
 				525381251D0F706C000A26AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		525381261D0F706C000A26AA /* Build configuration list for PBXNativeTarget "BounderTests" */ = {
+		525381261D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundsterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				525381271D0F706C000A26AA /* Debug */,
 				525381281D0F706C000A26AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		525381291D0F706C000A26AA /* Build configuration list for PBXNativeTarget "BounderUITests" */ = {
+		525381291D0F706C000A26AA /* Build configuration list for PBXNativeTarget "GeoBoundsterUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5253812A1D0F706C000A26AA /* Debug */,
 				5253812B1D0F706C000A26AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

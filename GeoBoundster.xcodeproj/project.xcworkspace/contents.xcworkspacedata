@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Bounder.xcodeproj">
+      location = "self:/Users/ericlilienstein/Developer/Bounder/GeoBoundster.xcodeproj">
    </FileRef>
 </Workspace>
