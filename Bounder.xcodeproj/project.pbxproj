@@ -15,6 +15,7 @@
 		525381091D0F706C000A26AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525381071D0F706C000A26AA /* LaunchScreen.storyboard */; };
 		525381141D0F706C000A26AA /* BounderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 525381131D0F706C000A26AA /* BounderTests.m */; };
 		5253811F1D0F706C000A26AA /* BounderUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253811E1D0F706C000A26AA /* BounderUITests.m */; };
+		5253812D1D0F8A8C000A26AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5253812C1D0F8A8C000A26AA /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		5253811A1D0F706C000A26AA /* BounderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BounderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5253811E1D0F706C000A26AA /* BounderUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BounderUITests.m; sourceTree = "<group>"; };
 		525381201D0F706C000A26AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5253812C1D0F8A8C000A26AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5253812D1D0F8A8C000A26AA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 		525380ED1D0F706B000A26AA = {
 			isa = PBXGroup;
 			children = (
+				5253812C1D0F8A8C000A26AA /* MapKit.framework */,
 				525380F81D0F706C000A26AA /* Bounder */,
 				525381121D0F706C000A26AA /* BounderTests */,
 				5253811D1D0F706C000A26AA /* BounderUITests */,
@@ -208,6 +212,11 @@
 					525380F51D0F706B000A26AA = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = LQQR4LS4KU;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5253810E1D0F706C000A26AA = {
 						CreatedOnToolsVersion = 7.3.1;

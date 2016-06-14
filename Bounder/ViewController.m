@@ -24,7 +24,7 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 
 @interface ViewController () <MKMapViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *coordinateDisplay;
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
@@ -41,7 +41,9 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 
@@ -55,13 +57,6 @@ MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
 
 MKCoordinateRegion myRegion = MKCoordinateRegionMake(mycoordinate, mySpan);
 
-self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                             initWithTarget:self
-                             action:@selector(handleTaps:)];
-
-//    self.tapGestureRecognizer.numberOfTapsRequired = 1;
-
-[self.view addGestureRecognizer:self.tapGestureRecognizer];
 
 
 self.mapView.mapType = MKMapTypeHybrid;
@@ -81,13 +76,22 @@ if
     });
 }
 
-[self.view addSubview:self.mapView];
+
+self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                             initWithTarget:self
+                             action:@selector(handleTaps:)];
+
+//    self.tapGestureRecognizer.numberOfTapsRequired = 1;
+
+[self.view addGestureRecognizer:self.tapGestureRecognizer];
 
 }
 
 
 
 - (void) handleTaps:(UITapGestureRecognizer*)paramSender{
+    
+   
     
     CGPoint point = [self.tapGestureRecognizer locationInView:self.mapView];
     
@@ -122,10 +126,10 @@ if
     swCoord.latitude  = tapPoint.latitude  - (region.span.latitudeDelta  / 2.0);
     swCoord.longitude = tapPoint.longitude + (region.span.longitudeDelta / 2.0);
     
-    NSString *neLat = [NSString stringWithFormat:@"%.8f", neCoord.latitude];
-    NSString *neLong = [NSString stringWithFormat:@"%.8f", neCoord.longitude];
-    NSString *swLat = [NSString stringWithFormat:@"%.8f", swCoord.latitude];
-    NSString *swLong = [NSString stringWithFormat:@"%.8f", swCoord.longitude];
+    NSString *neLat = [NSString stringWithFormat:@"%.0f", neCoord.latitude];
+    NSString *neLong = [NSString stringWithFormat:@"%.2f", neCoord.longitude];
+    NSString *swLat = [NSString stringWithFormat:@"%.0f", swCoord.latitude];
+    NSString *swLong = [NSString stringWithFormat:@"%.2f", swCoord.longitude];
     
     
     _bounds = @[neLong, swLat, swLong, neLat];
@@ -161,17 +165,47 @@ if
             //                address = [addressDictionary objectForKey: (NSString *) kABPersonAddressCountryKey];
             //            }
             
-            [self navigateToDetailVCWithBounds:_bounds address:address];
+           
         }
         
         
     }];
     
     
+    
+    
+    NSString *neCoordinate =[neLong stringByAppendingString:@", " ];
+    NSString *firstPointCoordinate =[neCoordinate stringByAppendingString:swLat];
+
+    NSString *formatedFirstPoint =[firstPointCoordinate stringByAppendingString:@", " ];
+    
+    NSString *swCoordinate =[swLong stringByAppendingString:@", "];
+    NSString *secondPointCoordinate = [swCoordinate stringByAppendingString:neLat];
+    NSString *allCoordinates = [formatedFirstPoint stringByAppendingString:secondPointCoordinate];
+    
+   // NSString *fullString = [allCoordinates stringByAppendingString:_addressString];
+     self.navigationItem.title = allCoordinates;
 }
 
 
-
+ 
+ -(void)send {
+ UIActivityViewController *activityViewController =
+ [[UIActivityViewController alloc] initWithActivityItems:@[_bounds]
+ applicationActivities:nil];
+ 
+// activityViewController.excludedActivityTypes = @[UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact];
+ if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
+ // iOS8
+ activityViewController.popoverPresentationController.sourceView =
+ self.view;
+ }
+ [self presentViewController:activityViewController
+ animated:YES
+ completion:^{
+ // ...
+ }];
+ }
 
 -(void)setUserDefaultsWithLatitude:(double)latitude longitude:(double)longitude latitudeDelta:(double)dLatitude longitudeDelta:(double)dLongitude {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -214,4 +248,3 @@ if
 
 @end
 
-@end
