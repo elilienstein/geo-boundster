@@ -117,10 +117,10 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     swCoord.latitude  = tapPoint.latitude  - (region.span.latitudeDelta  / 2.0);
     swCoord.longitude = tapPoint.longitude + (region.span.longitudeDelta / 2.0);
     
-    NSString *neLat = [NSString stringWithFormat:@"%.0f", neCoord.latitude];
-    NSString *neLong = [NSString stringWithFormat:@"%.2f", neCoord.longitude];
-    NSString *swLat = [NSString stringWithFormat:@"%.0f", swCoord.latitude];
-    NSString *swLong = [NSString stringWithFormat:@"%.2f", swCoord.longitude];
+    NSString *neLat = [NSString stringWithFormat:@"%.4f", neCoord.latitude];
+    NSString *neLong = [NSString stringWithFormat:@"%.4f", neCoord.longitude];
+    NSString *swLat = [NSString stringWithFormat:@"%.4f", swCoord.latitude];
+    NSString *swLong = [NSString stringWithFormat:@"%.4f", swCoord.longitude];
     
     
     
@@ -129,12 +129,12 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     [self setUserDefaultsWithLatitude:tapPoint.latitude longitude:tapPoint.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
     
     NSString *neCoordinate =[neLong stringByAppendingString:@",  " ];
-    NSString *firstPointCoordinate =[neCoordinate stringByAppendingString:swLat];
+    NSString *firstPointCoordinate =[neCoordinate stringByAppendingString:neLat];
 
     NSString *formatedFirstPoint =[firstPointCoordinate stringByAppendingString:@",  " ];
     
     NSString *swCoordinate =[swLong stringByAppendingString:@",  "];
-    NSString *secondPointCoordinate = [swCoordinate stringByAppendingString:neLat];
+    NSString *secondPointCoordinate = [swCoordinate stringByAppendingString:swLat];
     self.coordinates = [formatedFirstPoint stringByAppendingString:secondPointCoordinate];
     
 

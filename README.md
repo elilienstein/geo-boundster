@@ -1,9 +1,7 @@
 # geo-boundster
-Create a boundary area on a map with two points (4 values: northeast & southwest , longitude & latitude)
 
-1. Find the corners of the map
-2. Transform corner points into lat,lng values
-3. Calculate latitude and longitude deltas
-
-
- ...and format and display the resulting coordinates
+Tap on a map view to create a boundary area defined by two points with the tap point as the center.
+This application uses Apple's MapKit to generate bounding boxes with latitude and longitude value pairs.
+Bounding box coordinates are ordered as follows:
+neLong, neLat, swLong, swLat. They are displayed in the navigation bar and made accessible via an Export function.
+ Also, coordinates are saved to User Defaults so the map opens to the same location on next launch.
