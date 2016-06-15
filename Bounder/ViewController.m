@@ -122,22 +122,14 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     NSString *swLat = [NSString stringWithFormat:@"%.4f", swCoord.latitude];
     NSString *swLong = [NSString stringWithFormat:@"%.4f", swCoord.longitude];
     
-    
+    NSArray *arrayOfStrings = @[neLong, neLat, swLong, swLat];
     
   
     
     [self setUserDefaultsWithLatitude:tapPoint.latitude longitude:tapPoint.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
-    
-    NSString *neCoordinate =[neLong stringByAppendingString:@",  " ];
-    NSString *firstPointCoordinate =[neCoordinate stringByAppendingString:neLat];
-
-    NSString *formatedFirstPoint =[firstPointCoordinate stringByAppendingString:@",  " ];
-    
-    NSString *swCoordinate =[swLong stringByAppendingString:@",  "];
-    NSString *secondPointCoordinate = [swCoordinate stringByAppendingString:swLat];
-    self.coordinates = [formatedFirstPoint stringByAppendingString:secondPointCoordinate];
-    
-
+   
+    self.coordinates = [arrayOfStrings componentsJoinedByString:@", "];
+    NSLog(@"%@",self.coordinates);
      self.navigationItem.title = self.coordinates;
     [self showButton];
 }
