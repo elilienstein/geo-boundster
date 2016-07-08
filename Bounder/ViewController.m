@@ -22,9 +22,10 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
-
-
 @property (strong, nonatomic) NSString *coordinates;
+
+@property (strong, nonatomic) NSString *NEcoordinates;
+@property (strong, nonatomic) NSString *SWcoordinates;
 @property (nonatomic) MKCoordinateRegion myRegion;
 
 @end
@@ -40,7 +41,7 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
    
 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-
+self.navigationItem.title = @"Position the map... then tap to update coordinates";
 
 lats = [defaults doubleForKey:kDefaultLatitude];
 longs = [defaults doubleForKey:kDefaultLongitude];
@@ -90,11 +91,10 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     
     CLLocationCoordinate2D tapPoint = [self.mapView convertPoint:point toCoordinateFromView:self.view];
     
-    
-    //To calculate the search bounds...
+
     //1. Find the corners of the map
     
-    //
+
     CGPoint nePoint = CGPointMake(self.mapView.bounds.origin.x + self.mapView.bounds.size.width, self.mapView.bounds.origin.y);
     CGPoint swPoint = CGPointMake((self.mapView.bounds.origin.x), (self.mapView.bounds.origin.y + self.mapView.bounds.size.height));
     
@@ -103,34 +103,21 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
     
     CLLocationCoordinate2D swCoord = [self.mapView convertPoint:swPoint toCoordinateFromView:self.mapView];
     
-    //3. calculate latitude and longitude deltas
+    NSString *neLat = [[NSString stringWithFormat:@"%.7f", neCoord.latitude]stringByAppendingString:@"N"];
+    NSString *neLong = [[NSString stringWithFormat:@"%.7f", neCoord.longitude]stringByAppendingString:@"E / "];
+    NSString *swLat = [[NSString stringWithFormat:@"%.7f", swCoord.latitude]stringByAppendingString:@"S"];
+    NSString *swLong = [[NSString stringWithFormat:@"%.7f", swCoord.longitude]stringByAppendingString:@"W"];
     
-    latDelta = tapPoint.latitude - swCoord.latitude;
-    longDelta = tapPoint.longitude - swCoord.longitude;
-    MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
-    
-    //4. Add the calculated data to a region object
-    MKCoordinateRegion region =  {{tapPoint.latitude, tapPoint.longitude}, mySpan};
-    
-    neCoord.latitude  = tapPoint.latitude  + (region.span.latitudeDelta  / 2.0);
-    neCoord.longitude = tapPoint.longitude - (region.span.longitudeDelta / 2.0);
-    swCoord.latitude  = tapPoint.latitude  - (region.span.latitudeDelta  / 2.0);
-    swCoord.longitude = tapPoint.longitude + (region.span.longitudeDelta / 2.0);
-    
-    NSString *neLat = [NSString stringWithFormat:@"%.4f", neCoord.latitude];
-    NSString *neLong = [NSString stringWithFormat:@"%.4f", neCoord.longitude];
-    NSString *swLat = [NSString stringWithFormat:@"%.4f", swCoord.latitude];
-    NSString *swLong = [NSString stringWithFormat:@"%.4f", swCoord.longitude];
-    
-    NSArray *arrayOfStrings = @[neLong, neLat, swLong, swLat];
+    NSArray *arrayOfNEStrings = @[neLat, neLong];
+    NSArray *arrayOfSWStrings = @[swLat, swLong];
     
   
     
     [self setUserDefaultsWithLatitude:tapPoint.latitude longitude:tapPoint.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
-   
-    self.coordinates = [arrayOfStrings componentsJoinedByString:@", "];
-    NSLog(@"%@",self.coordinates);
-     self.navigationItem.title = self.coordinates;
+   NSString *NEcoordinates = [arrayOfNEStrings componentsJoinedByString:@", "];
+   NSString *SWcoordinates = [arrayOfSWStrings componentsJoinedByString:@", "];
+    self.coordinates = [NEcoordinates stringByAppendingString:SWcoordinates];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", self.coordinates];
     [self showButton];
 }
 
@@ -142,6 +129,7 @@ self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
 }
 
  -(void)export {
+    
  UIActivityViewController *activityViewController =
  [[UIActivityViewController alloc] initWithActivityItems:@[self.coordinates]
  applicationActivities:nil];

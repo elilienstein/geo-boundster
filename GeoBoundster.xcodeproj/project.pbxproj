@@ -14,7 +14,6 @@
 		525381061D0F706C000A26AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525381051D0F706C000A26AA /* Assets.xcassets */; };
 		525381091D0F706C000A26AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525381071D0F706C000A26AA /* LaunchScreen.storyboard */; };
 		5253812D1D0F8A8C000A26AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5253812C1D0F8A8C000A26AA /* MapKit.framework */; };
-		52AC8DC31D10E1C10055B0A5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52AC8DC21D10E1C10055B0A5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		5253810F1D0F706C000A26AA /* GeoBoundster.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoBoundster.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5253811A1D0F706C000A26AA /* GeoBoundster.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoBoundster.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5253812C1D0F8A8C000A26AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		52AC8DC21D10E1C10055B0A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 				525380FD1D0F706C000A26AA /* AppDelegate.m */,
 				525380FF1D0F706C000A26AA /* ViewController.h */,
 				525381001D0F706C000A26AA /* ViewController.m */,
-				52AC8DC21D10E1C10055B0A5 /* README.md */,
 				525381021D0F706C000A26AA /* Main.storyboard */,
 				525381051D0F706C000A26AA /* Assets.xcassets */,
 				525381071D0F706C000A26AA /* LaunchScreen.storyboard */,
@@ -260,7 +257,6 @@
 			files = (
 				525381011D0F706C000A26AA /* ViewController.m in Sources */,
 				525380FE1D0F706C000A26AA /* AppDelegate.m in Sources */,
-				52AC8DC31D10E1C10055B0A5 /* README.md in Sources */,
 				525380FB1D0F706C000A26AA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
