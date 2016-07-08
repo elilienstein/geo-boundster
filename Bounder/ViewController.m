@@ -13,6 +13,8 @@
 
 NSString * const kDefaultLatitude = @"savedUserLatitude";
 NSString * const kDefaultLongitude = @"savedUserLongitude";
+NSString * const kDefaultLatDelta = @"savedUserLatDelta";
+NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 
 @interface ViewController () <MKMapViewDelegate>
 
@@ -20,11 +22,6 @@ NSString * const kDefaultLongitude = @"savedUserLongitude";
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSString *coordinates;
 
-@property (strong, nonatomic) NSString *NEcoordinates;
-@property (strong, nonatomic) NSString *SWcoordinates;
-@property (nonatomic) MKCoordinateRegion myRegion;
-@property (weak, nonatomic) UILabel *NEDisplay;
-@property (weak, nonatomic) UILabel *SWDisplay;
 @end
 
 @implementation ViewController{
@@ -42,9 +39,13 @@ self.navigationItem.title = @"Select quadrant, then export coordinates";
 
 lats = [defaults doubleForKey:kDefaultLatitude];
 longs = [defaults doubleForKey:kDefaultLongitude];
-
+latDelta = [defaults doubleForKey:kDefaultLatDelta];
+longDelta = [defaults doubleForKey:kDefaultLongDelta];
+    
 CLLocationCoordinate2D mycoordinate = CLLocationCoordinate2DMake(lats, longs);
-
+    MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
+    
+    MKCoordinateRegion myRegion = MKCoordinateRegionMake(mycoordinate, mySpan);
 
 self.mapView.mapType = MKMapTypeHybrid;
 
@@ -58,7 +59,7 @@ if
 ((lats != 0.0) && (longs != 0.0)) {
     
     dispatch_once(&centerMapFirstTime, ^{
-        [self.mapView setCenterCoordinate:mycoordinate animated:YES];
+          [self.mapView setRegion:myRegion animated:YES];
         
         
     });
@@ -94,8 +95,20 @@ if
     NSArray *arrayOfSWStrings = @[swLat, swLong];
     
    CLLocationCoordinate2D centerCoord = self.mapView.centerCoordinate;
+    //calculate the span's latitude and longitude deltas
     
-    [self setUserDefaultsWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+    latDelta = centerCoord.latitude - swCoord.latitude;
+    longDelta = centerCoord.longitude - swCoord.longitude;
+    MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
+    
+    //Add the calculated data to a region object
+    MKCoordinateRegion region =  {{centerCoord.latitude, centerCoord.longitude}, mySpan};
+    
+    neCoord.latitude  = centerCoord.latitude  + (region.span.latitudeDelta  / 2.0);
+    neCoord.longitude = centerCoord.longitude - (region.span.longitudeDelta / 2.0);
+    swCoord.latitude  = centerCoord.latitude  - (region.span.latitudeDelta  / 2.0);
+    swCoord.longitude = centerCoord.longitude + (region.span.longitudeDelta / 2.0);
+     [self setUserDefaultsWithLatitude:centerCoord.latitude longitude:centerCoord.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
     
    NSString *NEcoordinates = [arrayOfNEStrings componentsJoinedByString:@", "];
    NSString *SWcoordinates = [arrayOfSWStrings componentsJoinedByString:@", "];
@@ -129,10 +142,12 @@ if
  }];
  }
 
--(void)setUserDefaultsWithLatitude:(double)latitude longitude:(double)longitude {
+-(void)setUserDefaultsWithLatitude:(double)latitude longitude:(double)longitude latitudeDelta:(double)dLatitude longitudeDelta:(double)dLongitude {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithDouble:latitude] forKey:kDefaultLatitude];
     [defaults setObject:[NSNumber numberWithDouble:longitude] forKey:kDefaultLongitude];
+    [defaults setObject:[NSNumber numberWithDouble:dLatitude] forKey:kDefaultLatDelta];
+    [defaults setObject:[NSNumber numberWithDouble:dLongitude] forKey:kDefaultLongDelta];
     
     [defaults synchronize];
 }
