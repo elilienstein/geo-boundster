@@ -17,11 +17,8 @@ NSString * const kDefaultLatDelta = @"savedUserLatDelta";
 NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 
 @interface ViewController () <MKMapViewDelegate>
-
-
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSString *coordinates;
-
 @end
 
 @implementation ViewController{
@@ -32,8 +29,8 @@ NSString * const kDefaultLongDelta = @"savedUserLongDelta";
 {
     [super viewDidLoad];
 
-   
-NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 self.navigationItem.title = @"Select quadrant, then export coordinates";
 
@@ -41,7 +38,7 @@ lats = [defaults doubleForKey:kDefaultLatitude];
 longs = [defaults doubleForKey:kDefaultLongitude];
 latDelta = [defaults doubleForKey:kDefaultLatDelta];
 longDelta = [defaults doubleForKey:kDefaultLongDelta];
-    
+
 CLLocationCoordinate2D mycoordinate = CLLocationCoordinate2DMake(lats, longs);
     MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
     
@@ -50,9 +47,7 @@ CLLocationCoordinate2D mycoordinate = CLLocationCoordinate2DMake(lats, longs);
 self.mapView.mapType = MKMapTypeHybrid;
 
 self.mapView.delegate = self;
-
-
-
+   
 static dispatch_once_t centerMapFirstTime;
 
 if
@@ -60,7 +55,7 @@ if
     
     dispatch_once(&centerMapFirstTime, ^{
           [self.mapView setRegion:myRegion animated:YES];
-        
+     
         
     });
 }
@@ -95,25 +90,21 @@ if
     NSArray *arrayOfSWStrings = @[swLat, swLong];
     
    CLLocationCoordinate2D centerCoord = self.mapView.centerCoordinate;
-    //calculate the span's latitude and longitude deltas
     
-    latDelta = centerCoord.latitude - swCoord.latitude;
-    longDelta = centerCoord.longitude - swCoord.longitude;
-    MKCoordinateSpan mySpan = MKCoordinateSpanMake(latDelta, longDelta);
+    //3. calculate the span's latitude and longitude deltas
     
-    //Add the calculated data to a region object
-    MKCoordinateRegion region =  {{centerCoord.latitude, centerCoord.longitude}, mySpan};
-    
-    neCoord.latitude  = centerCoord.latitude  + (region.span.latitudeDelta  / 2.0);
-    neCoord.longitude = centerCoord.longitude - (region.span.longitudeDelta / 2.0);
-    swCoord.latitude  = centerCoord.latitude  - (region.span.latitudeDelta  / 2.0);
-    swCoord.longitude = centerCoord.longitude + (region.span.longitudeDelta / 2.0);
-     [self setUserDefaultsWithLatitude:centerCoord.latitude longitude:centerCoord.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
+    latDelta = neCoord.latitude - swCoord.latitude;
+    longDelta = neCoord.longitude - swCoord.longitude;
+ 
+    [self setUserDefaultsWithLatitude:centerCoord.latitude longitude:centerCoord.longitude latitudeDelta:latDelta longitudeDelta:longDelta];
     
    NSString *NEcoordinates = [arrayOfNEStrings componentsJoinedByString:@", "];
+    
    NSString *SWcoordinates = [arrayOfSWStrings componentsJoinedByString:@", "];
+   
     self.coordinates = [NEcoordinates stringByAppendingString:SWcoordinates];
     self.navigationItem.title = [NSString stringWithFormat:@"%@", self.coordinates];
+    
     [self showButton];
 }
 
@@ -121,6 +112,7 @@ if
     if (self.coordinates != nil){
         UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Export" style:UIBarButtonItemStylePlain target:self action:@selector(export)];
     self.navigationItem.rightBarButtonItem = anotherButton;
+        
     }
 }
 
